@@ -151,18 +151,18 @@ input[type="checkbox"] {
   transition: background var(--timing-animation);
   max-width: 100%;
 
-  @include background-properties("./images/bg-desktop-light.jpg");
+  @include background-properties("../images/bg-desktop-light.jpg");
 
   @media (max-width: 375px) {
-    @include background-properties("./images/bg-mobile-light.jpg");
+    @include background-properties("../images/bg-mobile-light.jpg");
   }
 
   &--isDark {
     background: var(--color-bg-dark);
-    @include background-properties("./images/bg-desktop-dark.jpg");
+    @include background-properties("../images/bg-desktop-dark.jpg");
 
     @media (max-width: 375px) {
-      @include background-properties("./images/bg-mobile-dark.jpg");
+      @include background-properties("../images/bg-mobile-dark.jpg");
     }
   }
 
