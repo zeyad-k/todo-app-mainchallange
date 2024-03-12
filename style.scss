@@ -1,0 +1,430 @@
+@import "./mixins";
+@import "animate.css";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+:root {
+  --default-padding: 1.6rem;
+  --font-size-13: 1.3rem;
+  --font-size-16: 1.6rem;
+  --font-size-18: 1.8rem;
+  --font-size-20: 4rem;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-family: "Josefin Sans", sans-serif;
+  --timing-animation: 0.2s;
+  --color-white: white;
+  // Colors
+  --Bright-Blue: hsl(220, 98%, 61%);
+  --check-background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  // Light Theme
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+  --Light-Grayish-Blue: hsl(233, 11%, 84%);
+  --Dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+  --color-bg: var(--Very-Light-Gray);
+  --color-bg-input: var(--Very-Light-Gray);
+  --color-text: var(--Dark-Grayish-Blue);
+  --color-input: var(--Very-Dark-Grayish-Blue);
+  --color-border: var(--Light-Grayish-Blue);
+  // Dark Theme
+  --Very-Dark-Blue: hsl(235, 21%, 11%);
+  --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --color-bg-dark: var(--Very-Dark-Blue);
+  --background-color: var(--Very-Dark-Desaturated-Blue);
+  --color-text-dark: var(--Dark-Grayish-Blue);
+  --color-input-dark: var(--Light-Grayish-Blue);
+  --color-border-dark: var(--Very-Dark-Grayish-Blue);
+}
+
+// CSS Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Josefin Sans", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+}
+
+input[type="text"] {
+  border: 0;
+  width: 100%; // Add this line
+  background-color: transparent;
+  &:focus {
+    outline: none;
+    caret-color: var(--Light-Grayish-Blue);
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+
+  & + label {
+    position: relative;
+    padding-left: 30px;
+
+    &:before {
+      cursor: pointer;
+      content: "";
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--Light-Grayish-Blue);
+    }
+    &:hover::before {
+      cursor: pointer;
+      // border-color: hsl(192, 100%, 67%), hsl(280, 87%, 65%);
+      // border-color: hsl(192, 100%, 67%);
+      border-color: hsl(280, 87%, 65%);
+    }
+    &:disabled:hover::before {
+      border-color: initial; // Reset to initial border color
+    }
+
+    &:after {
+      cursor: pointer;
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 0px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--check-background);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+  }
+
+  &:checked + label:after {
+    content: "✔"; // Unicode checkmark
+    color: white;
+    text-align: center;
+    font-size: 10;
+    line-height: 25px; // Adjust as needed
+    font-weight: 400;
+    opacity: 1;
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  font-size: var(--font-size-18);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  position: relative;
+  transition: background var(--timing-animation);
+  max-width: 100%;
+
+  @include background-properties("./images/bg-desktop-light.jpg");
+
+  @media (max-width: 375px) {
+    @include background-properties("./images/bg-mobile-light.jpg");
+  }
+
+  &--isDark {
+    background: var(--color-bg-dark);
+    @include background-properties("./images/bg-desktop-dark.jpg");
+
+    @media (max-width: 375px) {
+      @include background-properties("./images/bg-mobile-dark.jpg");
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 70rem;
+    width: 100%;
+    flex: 1;
+    padding: var(--default-padding);
+  }
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--default-padding);
+  font-size: var(--font-size-20);
+  margin: 0 auto;
+  max-width: 70rem;
+  width: 100%;
+  margin-top: calc(var(--default-padding) * 3);
+  color: var(--color-white);
+
+  &__Logo {
+    font-size: var(--font-size-20);
+    letter-spacing: 0.3em;
+  }
+}
+
+.DarkThemeToggle {
+  transition: all var(--timing-animation) ease-in-out;
+
+  &__sun-icon {
+    display: none;
+  }
+}
+
+.App--isDark {
+  .DarkThemeToggle {
+    &__sun-icon {
+      display: flex;
+    }
+    &__moon-icon {
+      display: none;
+    }
+  }
+
+  input[type="checkbox"] + label:before {
+    border: 1.5px solid var(--Very-Dark-Grayish-Blue);
+  }
+
+  .TaskInputBar {
+    background-color: var(--background-color);
+    &__input {
+      color: var(--color-input-dark);
+    }
+  }
+
+  .TaskList {
+    &__TaskContent {
+      background-color: var(--background-color);
+      border-color: var(--color-border-dark);
+    }
+    &__input {
+      color: var(--color-input-dark);
+    }
+  }
+
+  .AppFooter {
+    background-color: var(--background-color);
+  }
+}
+
+.TaskInputBar {
+  @include boxProperties;
+  @include box-shadow;
+  border-radius: 0.5rem;
+  margin-bottom: var(--default-padding);
+
+  &__form,
+  &__input {
+    width: 100%;
+  }
+
+  &__input {
+    font-size: var(--font-size-18);
+    color: var(--color-input);
+    font-weight: 400;
+
+    ::placeholder {
+      color: var(--color-gray);
+      opacity: 1;
+    }
+  }
+
+  &__Delete {
+    transition: all var(--timing-animation) ease-in-out;
+    display: none;
+  }
+}
+
+.EmptyList {
+  text-align: center;
+  color: var(--color-gray);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-large);
+  margin: var(--default-padding) auto 0;
+
+  &__img {
+    height: 30rem;
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+}
+
+.TaskList {
+  box-shadow: $box-shadow;
+  @include box-shadow;
+
+  max-height: 500px; // Adjust as needed
+  overflow-y: auto; // Enable scrolling if content overflows
+
+  // Style the scrollbar
+  &::-webkit-scrollbar {
+    width: 10px; // Adjust as needed
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; // Adjust as needed for light theme
+    @media (prefers-color-scheme: dark) {
+      background: #333; // Adjust as needed for dark theme
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888; // Adjust as needed for light theme
+    border-radius: 5px; // Add rounded corners
+    @media (prefers-color-scheme: dark) {
+      background: #555; // Adjust as needed for dark theme
+    }
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; // Adjust as needed for light theme
+    @media (prefers-color-scheme: dark) {
+      background: #888; // Adjust as needed for dark theme
+    }
+  }
+
+  &__TaskContent {
+    @include boxProperties;
+    border-radius: 0rem;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+
+    &:hover .TaskInputBar__Delete {
+      display: flex;
+    }
+
+    &:nth-child(1) {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    &__form,
+    &__input {
+      width: 100%;
+    }
+
+    &__input {
+      cursor: none;
+      font-size: var(--font-size-18);
+      color: var(--color-input);
+      font-weight: 400;
+
+      ::placeholder {
+        opacity: 1;
+      }
+
+      &:disabled {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.TaskList__list--showCompletedOnly {
+  .TaskList__TaskContent {
+    display: none;
+  }
+}
+
+.TaskList__taskContent--isActive {
+  .TaskInputBar__input {
+    text-decoration: line-through;
+    color: var(--color-text);
+  }
+  .TaskList__list--hideCompleted & {
+    display: none;
+  }
+  .TaskList__list--showCompletedOnly & {
+    display: flex;
+  }
+
+  .TaskList__checkbox {
+    background-color: var(--color-blue);
+  }
+
+  .TaskList__checkboxImage {
+    display: none;
+    background-color: var(--color-blue);
+  }
+}
+
+.AppFooter {
+  @include boxProperties;
+  @include box-shadow;
+
+  position: sticky;
+  bottom: 50px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0rem;
+  font-size: var(--font-size-13);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+
+  &__ClearCompleted,
+  &__ViewAll,
+  &__ViewActive,
+  &__ViewCompleted {
+    color: inherit;
+  }
+  &__FilterItems {
+    @media (max-width: 400px) {
+      display: none;
+    }
+
+    display: flex;
+    gap: var(--default-padding);
+    &--mobile {
+      @media (max-width: 400px) {
+        @include boxProperties;
+        @include box-shadow;
+        justify-content: space-evenly;
+        margin-top: var(--default-padding);
+      }
+      @media (min-width: 401px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.TaskList__link--isActive {
+  color: var(--Bright-Blue);
+  font-size: var(--font-size-16);
+}
+
+.drag__drop {
+  margin-top: calc(var(--default-padding) * 2);
+  text-align: center;
+}

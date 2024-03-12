@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Todo app</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <!-- <link rel="stylesheet" href="./styles/style.css" /> -->
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="App">
+      <header class="Header">
+        <h1 class="Header__Logo">TODO</h1>
+        <button class="DarkThemeToggle">
+          <img
+            class="DarkThemeToggle__Icon DarkThemeToggle__moon-icon"
+            src="./images/icon-moon.svg"
+            alt="darkModeIcon"
+          />
+          <img
+            class="DarkThemeToggle__Icon DarkThemeToggle__sun-icon"
+            src="./images/icon-sun.svg"
+            alt="darkModeIcon"
+          />
+        </button>
+      </header>
+
+      <div class="App__wrapper">
+        <div class="TaskInputBar">
+          <div>
+            <input type="checkbox" id="decor" class="decor" disabled />
+            <label for="decor"></label>
+          </div>
+          <form class="TaskInputBar__form">
+            <input
+              id="task-input"
+              class="TaskInputBar__input"
+              type="text"
+              placeholder="Create a new todo."
+              required
+            />
+          </form>
+        </div>
+
+        <div class="TaskList">
+          <ul class="TaskList__list"></ul>
+          <!-- <li
+            draggable="true"
+            class="TaskList__TaskContent ${task.isCompleted ? ' TaskList__taskContent--isActive' : ''}"
+          >
+            <div>
+              <input
+                type="checkbox"
+                class="TaskList__Checkbox"
+                id="checkbox1"
+              />
+              <label for="checkbox1"></label>
+            </div>
+            <div class="TaskInputBar__form">
+              <p class="TaskInputBar__input">${task.value}</p>
+            </div>
+            <button class="TaskInputBar__Delete">
+              <img
+                class="TaskInputBar__DeleteIcon"
+                src="./images/icon-cross.svg"
+                alt="Delete Icon"
+              />
+            </button>
+          </li> -->
+        </div>
+
+        <div class="AppFooter">
+          <div class="AppFooter__CountItems">
+            <span class="AppFooter__Counter">0</span> Items left
+          </div>
+          <div class="AppFooter__FilterItems">
+            <button class="AppFooter__ViewAll">All</button>
+            <button class="AppFooter__ViewActive">Active</button>
+            <button class="AppFooter__ViewCompleted">Completed</button>
+          </div>
+          <button class="AppFooter__ClearCompleted">Clear Completed</button>
+        </div>
+        <p class="drag__drop">Drop and Drag to reorder list</p>
+        <!-- <div class="AppFooter__FilterItems AppFooter__FilterItems--mobile">
+          <button class="AppFooter__ViewAll">All</button>
+          <button class="AppFooter__ViewActive">Active</button>
+          <button class="AppFooter__ViewCompleted">Completed</button>
+        </div> -->
+      </div>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="https://github.com/zeyad-k">Zeyad Abdullatif</a>.
+      </div>
+    </main>
+
+    <script src="./dist/main.js" type="module"></script>
+  </body>
+</html>
