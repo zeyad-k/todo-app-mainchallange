@@ -50,6 +50,7 @@ const renderTask = () => {
   taskList.forEach((task, index) => {
     const taskElement = document.createElement('li');
     taskElement.draggable = true;
+    // taskElement.className = `TaskList__TaskContent animate__animated animate__fadeInDown ${task.isCompleted ? ' TaskList__taskContent--isActive' : ''}`;
     taskElement.className = `TaskList__TaskContent animate__animated animate__fadeInDown ${task.isCompleted ? ' TaskList__taskContent--isActive' : ''}`;
     taskElement.innerHTML = taskTemplate(task, index);
     TaskListElement.appendChild(taskElement);
